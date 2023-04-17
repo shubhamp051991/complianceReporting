@@ -2,6 +2,8 @@
 catalogName = dbutils.widgets.getArgument("catalogName")
 schemaName = dbutils.widgets.getArgument("schemaName")
 tableName = dbutils.widgets.getArgument("tableName")
+functionCatalog = dbutils.widgets.getArgument("functionCatalog")
+functionSchema = dbutils.widgets.getArgument("functionSchema")
 
 # COMMAND ----------
 
@@ -63,7 +65,8 @@ findValidSecret_udf = udf(findValidSecret,StringType())
 # COMMAND ----------
 
 data = spark.sql(f"""
-select routine_catalog,routine_schema,routine_name,routine_owner,routine_definition,created_by,last_altered_by from system.information_schema.routines
+select routine_catalog,routine_schema,routine_name,routine_owner,routine_definition,created_by,last_altered_by 
+from {functionCatalog}.{functionSchema}.routines
 where routine_definition is not null""")
 
 display(data)
