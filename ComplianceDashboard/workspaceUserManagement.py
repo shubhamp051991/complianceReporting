@@ -13,7 +13,7 @@ from pyspark.sql.functions import explode
 import requests
 
 url = "https://e2-demo-field-eng.cloud.databricks.com"
-token = "dapi2f0af1f1749a11b3ac195b5ccf2e5587"
+token = "<PersonalAccessToken>"
 
 def get_api(endpoint_url, token):
     res = requests.get(endpoint_url, headers = {"Authentication": f"Bearer {token}"})
